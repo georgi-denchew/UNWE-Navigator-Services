@@ -12,15 +12,15 @@ namespace UNWE_Navigator_Services.Controllers
 {
     public class RouteController : ApiController
     {
-        public List<RouteModel> Get(string from, string to)
+        [HttpGet]
+        public Object Get(string from, string to)
         {
-            //return "from " + from + " to " + to;
-            List<RouteModel> result = LoadInfo(to, from);
-
-            return result;
+            return "from: " + from + " to: " + to;
+            //List<RouteModel> result = LoadInfo(to, from);
+            //return result;
         }
 
-        public List<RouteModel> LoadInfo(string to, string from)
+        private List<RouteModel> LoadInfo(string to, string from)
         {
 
             List<RouteModel> result = new List<RouteModel>();
@@ -269,7 +269,7 @@ namespace UNWE_Navigator_Services.Controllers
             return result;
         }
 
-        public List<Point> Calculate(string r1, string r2, string sec_fl, string searchID)
+        private List<Point> Calculate(string r1, string r2, string sec_fl, string searchID)
         {
             int step = 25;
 
@@ -536,7 +536,7 @@ namespace UNWE_Navigator_Services.Controllers
         }
 
 
-        public string[,] GetFloors(string routeid, String[,] floors_info, string secfl_from, string secfl_to, string floor_from, string floor_to, string pos_from, string pos_to)
+        private string[,] GetFloors(string routeid, String[,] floors_info, string secfl_from, string secfl_to, string floor_from, string floor_to, string pos_from, string pos_to)
         {
             //get all connectors from current floor           
             string sql_getidfl = "Select PointName,IDEntryPoint from EntryPointsView where IDSecFl=" + secfl_from + " and IDRouteOrder=" + routeid + " order by Position";

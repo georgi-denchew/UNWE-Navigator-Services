@@ -18,15 +18,15 @@ namespace UNWE_Navigator_Services.Controllers
         public string result = "";
 
         [HttpGet]
-        public Object Get(string from, string to)
+        public List<RouteModel> Get(string from, string to)
         {
             //log.Fatal("begin");
             result = "from: " + from + " to: " + to;
-
+            List<RouteModel> resultA = null;
             try
             {
-                List<RouteModel> resultA = LoadInfo(to, from);
-
+                resultA = LoadInfo(to, from);
+             //   return resultA;
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace UNWE_Navigator_Services.Controllers
 
             log.Fatal("end");
 
-            return result;
+            return resultA;
         }
 
         private List<RouteModel> LoadInfo(string to, string from)

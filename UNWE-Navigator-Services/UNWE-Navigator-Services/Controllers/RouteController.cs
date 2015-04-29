@@ -15,11 +15,13 @@ namespace UNWE_Navigator_Services.Controllers
     {
         public static ILog log = LogManager.GetLogger(typeof(RouteController));
 
+        public string result = "";
+
         [HttpGet]
         public Object Get(string from, string to)
         {
-            log.Fatal("begin");
-            string result = "from: " + from + " to: " + to;
+            //log.Fatal("begin");
+            result = "from: " + from + " to: " + to;
 
             try
             {
@@ -38,7 +40,9 @@ namespace UNWE_Navigator_Services.Controllers
 
         private List<RouteModel> LoadInfo(string to, string from)
         {
-            log.Fatal("begin LoadInfo");
+            
+            this.result += " begin LoadInfo ";
+            //log.Fatal("begin LoadInfo");
             List<RouteModel> result = new List<RouteModel>();
 
             string searchID = LibFunct.GetRandom();
@@ -234,7 +238,7 @@ namespace UNWE_Navigator_Services.Controllers
                 //btn_ShowPath.Visible = false;
             }
 
-
+            this.result += "end LoadInfo ";
             log.Debug("end LoadInfo");
 
 
@@ -253,6 +257,8 @@ namespace UNWE_Navigator_Services.Controllers
 
         private RouteModel GetRoute(string floor, string fromRoom, string toRoom, string searchID)
         {
+            this.result += "begin GetRoute ";
+
             log.Debug("begin GetRoute");
 
             string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + floor;
@@ -288,6 +294,7 @@ namespace UNWE_Navigator_Services.Controllers
                 result.PathPoints = pathCoords;
             }
 
+            this.result += "end GetRoute ";
             log.Debug("end GetRoute");
 
             return result;
@@ -295,6 +302,7 @@ namespace UNWE_Navigator_Services.Controllers
 
         private List<Point> Calculate(string r1, string r2, string sec_fl, string searchID)
         {
+            this.result += "begin Calculate ";
             log.Debug("begin Calculate");
 
             int step = 25;
@@ -498,13 +506,14 @@ namespace UNWE_Navigator_Services.Controllers
                         }
                     }
 
-
+                    this.result += "end Calculate ";
                     log.Debug("end Calculate");
 
                     return result;
                 }
             }
 
+            this.result += "end Calculate null ";
             log.Debug("end Calculate null");
 
             return null;
@@ -513,6 +522,7 @@ namespace UNWE_Navigator_Services.Controllers
 
         private string LoadLinks(string floorsString)
         {
+            this.result += "begin LoadLinks ";
             log.Debug("begin LoadLinks");
 
             string links = string.Empty;
@@ -563,7 +573,7 @@ namespace UNWE_Navigator_Services.Controllers
                     }
                 }
             }
-
+            this.result += "end LoadLinks ";
             log.Debug("end LoadLinks");
 
             return links;
@@ -572,6 +582,7 @@ namespace UNWE_Navigator_Services.Controllers
 
         private string[,] GetFloors(string routeid, String[,] floors_info, string secfl_from, string secfl_to, string floor_from, string floor_to, string pos_from, string pos_to)
         {
+            this.result += "begin GetFloors ";
             log.Debug("begin GetFloors");
 
             //get all connectors from current floor           
@@ -698,6 +709,7 @@ namespace UNWE_Navigator_Services.Controllers
 
             }
 
+            this.result += "end GetFloors ";
             log.Debug("end GetFloors");
 
 

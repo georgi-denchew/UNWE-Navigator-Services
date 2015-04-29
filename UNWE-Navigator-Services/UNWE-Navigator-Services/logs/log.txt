@@ -1,0 +1,59 @@
+FATAL 2015-04-29 23:56:11,983 24323ms RouteController        Get                - begin
+FATAL 2015-04-29 23:56:12,021 24361ms RouteController        LoadInfo           - begin LoadInfo
+FATAL 2015-04-29 23:56:12,878 25218ms RouteController        GetFloors          - begin GetFloors
+FATAL 2015-04-29 23:56:13,301 25641ms RouteController        GetFloors          - begin GetFloors
+FATAL 2015-04-29 23:56:13,806 26147ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-29 23:56:13,884 26224ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-29 23:56:14,219 26560ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-29 23:56:14,220 26561ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-29 23:56:14,287 26628ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-29 23:56:14,354 26694ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-29 23:56:14,625 26966ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-29 23:56:14,625 26966ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-29 23:56:14,762 27102ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-29 23:56:14,828 27168ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-29 23:56:15,098 27438ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-29 23:56:15,099 27439ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-29 23:56:15,237 27578ms RouteController        LoadLinks          - begin LoadLinks
+FATAL 2015-04-29 23:56:15,497 27837ms RouteController        LoadLinks          - end LoadLinks
+FATAL 2015-04-29 23:56:15,498 27838ms RouteController        LoadInfo           - end LoadInfo
+FATAL 2015-04-29 23:56:15,499 27839ms RouteController        Get                - end
+FATAL 2015-04-29 23:57:34,747 44436ms RouteController        Get                - begin
+FATAL 2015-04-30 00:01:31,903 281591ms RouteController        LoadInfo           - begin LoadInfo
+FATAL 2015-04-30 00:01:33,014 282702ms RouteController        GetFloors          - begin GetFloors
+FATAL 2015-04-30 00:01:33,609 283297ms RouteController        GetFloors          - begin GetFloors
+FATAL 2015-04-30 00:01:34,355 284043ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-30 00:01:34,470 284158ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-30 00:01:34,885 284573ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-30 00:01:34,885 284573ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-30 00:01:34,961 284649ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-30 00:01:35,098 284786ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-30 00:01:35,445 285133ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-30 00:01:35,445 285133ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-30 00:01:35,530 285218ms RouteController        GetRoute           - begin GetRoute
+FATAL 2015-04-30 00:01:35,632 285320ms RouteController        Calculate          - begin Calculate
+FATAL 2015-04-30 00:01:35,998 285687ms RouteController        Calculate          - end Calculate
+FATAL 2015-04-30 00:01:35,999 285688ms RouteController        GetRoute           - end GetRoute
+FATAL 2015-04-30 00:01:41,151 290839ms RouteController        LoadLinks          - begin LoadLinks
+FATAL 2015-04-30 00:01:41,474 291162ms RouteController        LoadLinks          - end LoadLinks
+FATAL 2015-04-30 00:01:41,475 291163ms RouteController        LoadInfo           - end LoadInfo
+FATAL 2015-04-30 00:01:41,475 291163ms RouteController        Get                - end
+FATAL 2015-04-30 00:04:26,320 23394ms RouteController        Get                - begin
+FATAL 2015-04-30 00:04:56,154 53228ms RouteController        LoadInfo           - begin LoadInfo
+DEBUG 2015-04-30 00:04:58,226 55300ms RouteController        GetFloors          - begin GetFloors
+DEBUG 2015-04-30 00:04:58,905 55979ms RouteController        GetFloors          - begin GetFloors
+DEBUG 2015-04-30 00:04:59,667 56741ms RouteController        GetRoute           - begin GetRoute
+DEBUG 2015-04-30 00:04:59,779 56853ms RouteController        Calculate          - begin Calculate
+DEBUG 2015-04-30 00:05:00,338 57412ms RouteController        Calculate          - end Calculate
+DEBUG 2015-04-30 00:05:00,338 57412ms RouteController        GetRoute           - end GetRoute
+DEBUG 2015-04-30 00:05:00,440 57514ms RouteController        GetRoute           - begin GetRoute
+DEBUG 2015-04-30 00:05:00,544 57618ms RouteController        Calculate          - begin Calculate
+DEBUG 2015-04-30 00:05:00,976 58050ms RouteController        Calculate          - end Calculate
+DEBUG 2015-04-30 00:05:00,977 58051ms RouteController        GetRoute           - end GetRoute
+DEBUG 2015-04-30 00:05:01,084 58158ms RouteController        GetRoute           - begin GetRoute
+DEBUG 2015-04-30 00:05:01,191 58265ms RouteController        Calculate          - begin Calculate
+DEBUG 2015-04-30 00:05:01,580 58654ms RouteController        Calculate          - end Calculate
+DEBUG 2015-04-30 00:05:01,581 58655ms RouteController        GetRoute           - end GetRoute
+DEBUG 2015-04-30 00:05:01,775 58849ms RouteController        LoadLinks          - begin LoadLinks
+DEBUG 2015-04-30 00:05:02,087 59161ms RouteController        LoadLinks          - end LoadLinks
+DEBUG 2015-04-30 00:05:07,247 64321ms RouteController        LoadInfo           - end LoadInfo

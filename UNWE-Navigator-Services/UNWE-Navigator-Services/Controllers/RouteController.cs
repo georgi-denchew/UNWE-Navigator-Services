@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace UNWE_Navigator_Services.Controllers
 {
     public class RouteController : ApiController
     {
+        public static ILog log = LogManager.GetLogger(typeof(RouteController));
+
         [HttpGet]
         public Object Get(string from, string to)
         {
+            log.Fatal("begin");
             string result = "from: " + from + " to: " + to;
 
             try
@@ -27,12 +31,14 @@ namespace UNWE_Navigator_Services.Controllers
                 result = e.Message;
             }
 
+            log.Fatal("end");
+
             return result;
         }
 
         private List<RouteModel> LoadInfo(string to, string from)
         {
-
+            log.Fatal("begin LoadInfo");
             List<RouteModel> result = new List<RouteModel>();
 
             string searchID = LibFunct.GetRandom();
@@ -141,7 +147,7 @@ namespace UNWE_Navigator_Services.Controllers
                         string sql = "Insert into TempPathData (SearchID,IDSecFl,EnterPoint,LeavePoint,OrderNum) Values ('" + searchID + "'," + floors[i, 0] + ",'" + floors[i, 1] + "','" + floors[i, 2] + "'," + (i + 1) + ")";
                         DB_Functions.GetData(sql);
 
-                        RouteModel routeModel = getRoute(floors[i, 0], rooms[0], rooms[1], searchID);
+                        RouteModel routeModel = GetRoute(floors[i, 0], rooms[0], rooms[1], searchID);
 
                         result.Add(routeModel);
                     }
@@ -229,6 +235,9 @@ namespace UNWE_Navigator_Services.Controllers
             }
 
 
+            log.Debug("end LoadInfo");
+
+
             return result;
 
             //return new RouteModel
@@ -242,8 +251,10 @@ namespace UNWE_Navigator_Services.Controllers
             //};
         }
 
-        private RouteModel getRoute(string floor, string fromRoom, string toRoom, string searchID)
+        private RouteModel GetRoute(string floor, string fromRoom, string toRoom, string searchID)
         {
+            log.Debug("begin GetRoute");
+
             string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + floor;
             RouteModel result = new RouteModel();
             result.FloorSectionID = floor;
@@ -276,11 +287,16 @@ namespace UNWE_Navigator_Services.Controllers
                 List<Point> pathCoords = Calculate(fromRoom, toRoom, floor, searchID);
                 result.PathPoints = pathCoords;
             }
+
+            log.Debug("end GetRoute");
+
             return result;
         }
 
         private List<Point> Calculate(string r1, string r2, string sec_fl, string searchID)
         {
+            log.Debug("begin Calculate");
+
             int step = 25;
 
             List<Point> result = new List<Point>();
@@ -483,16 +499,22 @@ namespace UNWE_Navigator_Services.Controllers
                     }
 
 
+                    log.Debug("end Calculate");
 
                     return result;
                 }
             }
+
+            log.Debug("end Calculate null");
+
             return null;
 
         }
 
         private string LoadLinks(string floorsString)
         {
+            log.Debug("begin LoadLinks");
+
             string links = string.Empty;
 
             if (floorsString != null)
@@ -542,12 +564,16 @@ namespace UNWE_Navigator_Services.Controllers
                 }
             }
 
+            log.Debug("end LoadLinks");
+
             return links;
         }
 
 
         private string[,] GetFloors(string routeid, String[,] floors_info, string secfl_from, string secfl_to, string floor_from, string floor_to, string pos_from, string pos_to)
         {
+            log.Debug("begin GetFloors");
+
             //get all connectors from current floor           
             string sql_getidfl = "Select PointName,IDEntryPoint from EntryPointsView where IDSecFl=" + secfl_from + " and IDRouteOrder=" + routeid + " order by Position";
             if (int.Parse(pos_from) < int.Parse(pos_to))
@@ -671,6 +697,9 @@ namespace UNWE_Navigator_Services.Controllers
                 }
 
             }
+
+            log.Debug("end GetFloors");
+
 
             return floors_info;
         }

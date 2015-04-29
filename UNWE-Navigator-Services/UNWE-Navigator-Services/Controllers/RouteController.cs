@@ -15,9 +15,19 @@ namespace UNWE_Navigator_Services.Controllers
         [HttpGet]
         public Object Get(string from, string to)
         {
-            return "from: " + from + " to: " + to;
-            //List<RouteModel> result = LoadInfo(to, from);
-            //return result;
+            string result = "from: " + from + " to: " + to;
+
+            try
+            {
+                List<RouteModel> resultA = LoadInfo(to, from);
+
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+
+            return result;
         }
 
         private List<RouteModel> LoadInfo(string to, string from)
@@ -119,7 +129,7 @@ namespace UNWE_Navigator_Services.Controllers
                         }
                     }
 
-                   // roomsString = r_from.Rows[0][3].ToString() + ">" + r_to.Rows[0][3].ToString();
+                    // roomsString = r_from.Rows[0][3].ToString() + ">" + r_to.Rows[0][3].ToString();
                     string[] rooms = new string[] { r_from.Rows[0][3].ToString(), r_to.Rows[0][3].ToString() };
 
                     //Session["floors"] = "";
@@ -132,7 +142,7 @@ namespace UNWE_Navigator_Services.Controllers
                         DB_Functions.GetData(sql);
 
                         RouteModel routeModel = getRoute(floors[i, 0], rooms[0], rooms[1], searchID);
-                        
+
                         result.Add(routeModel);
                     }
 
@@ -293,12 +303,12 @@ namespace UNWE_Navigator_Services.Controllers
                 }
                 //add point path if any of the points on the floor are used
                 string sql = "Select PointName,PointPath,OrderNum,'1' AS NumOrd from TempPathData INNER JOIN EntryPoints ON TempPathData.IDSecFl = EntryPoints.IdSecFl " +
-                    "where TempPathData.IDSecFl=" + sec_fl + " and SearchID='" + 
+                    "where TempPathData.IDSecFl=" + sec_fl + " and SearchID='" +
                     searchID
                     //Request.Cookies["SearchID"].Value.ToString() 
                     + "' and IDEntryPoint=EnterPoint " +
                     " union Select PointName,PointPath,OrderNum,'2' AS NumOrd from TempPathData INNER JOIN EntryPoints ON TempPathData.IDSecFl = EntryPoints.IdSecFl " +
-                    "where TempPathData.IDSecFl=" + sec_fl + " and SearchID='" + 
+                    "where TempPathData.IDSecFl=" + sec_fl + " and SearchID='" +
                     searchID
                     //Request.Cookies["SearchID"].Value.ToString() 
                     + "' and IDEntryPoint=LeavePoint order by NumOrd";// where EnterPoint is not '' and LeavePoint is not ''
@@ -330,7 +340,7 @@ namespace UNWE_Navigator_Services.Controllers
 
                 if (fl_rooms.GetLength(0) < 2)
                 {
-                   // Err_msg.Text = "Възникна грешка (проблем с данните за етаж:" + sec_fl + ")";
+                    // Err_msg.Text = "Възникна грешка (проблем с данните за етаж:" + sec_fl + ")";
                 }
                 else
                 {
@@ -339,53 +349,53 @@ namespace UNWE_Navigator_Services.Controllers
                     string[] pathCoords = new string[0];
 
 
-                    try
+                    //   try
+                    // {
+                    //find closest path point for start
+                    for (int i = 0; i < mainPath.Length; i++)
                     {
-                        //find closest path point for start
-                        for (int i = 0; i < mainPath.Length; i++)
+                        int x1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[0]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[0]);
+                        int y1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[1]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[1]);
+                        if (x1_diff <= step && x1_diff >= step * -1 && (y1_diff >= (step * -1) && y1_diff <= step))//y1_diff == 0)
                         {
-                            int x1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[0]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[0]);
-                            int y1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[1]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[1]);
-                            if (x1_diff <= step && x1_diff >= step * -1 && (y1_diff >= (step * -1) && y1_diff <= step))//y1_diff == 0)
-                            {
-                                ix_start = i;
-                                break;
-                            }
-                            else if ((x1_diff >= step * -1 && x1_diff <= step) && y1_diff <= step && y1_diff >= step * -1)//x1_diff == 0
-                            {
-                                ix_start = i;
-                                break;
-                            }
+                            ix_start = i;
+                            break;
+                        }
+                        else if ((x1_diff >= step * -1 && x1_diff <= step) && y1_diff <= step && y1_diff >= step * -1)//x1_diff == 0
+                        {
+                            ix_start = i;
+                            break;
                         }
                     }
-                    catch (Exception exx)
-                    {
-                        //Err_msg.Text = "Възникна грешка с началната точка, моля опитайте отново";
-                    }
+                    //}
+                    //catch (Exception exx)
+                    //{
+                    //    //Err_msg.Text = "Възникна грешка с началната точка, моля опитайте отново";
+                    //}
 
-                    try
+                    //try
+                    //{
+                    //find closest path point for start
+                    for (int i = 0; i < mainPath.Length; i++)
                     {
-                        //find closest path point for start
-                        for (int i = 0; i < mainPath.Length; i++)
+                        int x1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[0]) - Convert.ToInt32(fl_rooms[1, 1].Split('>')[0].Split(new char[] { ';' })[0]);
+                        int y1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[1]) - Convert.ToInt32(fl_rooms[1, 1].Split('>')[0].Split(new char[] { ';' })[1]);
+                        if (x1_diff <= step && x1_diff >= step * -1 && (y1_diff >= step * -1 && y1_diff <= step))//y1_diff == 0)
                         {
-                            int x1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[0]) - Convert.ToInt32(fl_rooms[1, 1].Split('>')[0].Split(new char[] { ';' })[0]);
-                            int y1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[1]) - Convert.ToInt32(fl_rooms[1, 1].Split('>')[0].Split(new char[] { ';' })[1]);
-                            if (x1_diff <= step && x1_diff >= step * -1 && (y1_diff >= step * -1 && y1_diff <= step))//y1_diff == 0)
-                            {
-                                ix_end = i;
-                                break;
-                            }
-                            else if ((x1_diff >= step * -1 && x1_diff <= step) && y1_diff <= step && y1_diff >= step * -1)//x1_diff == 0
-                            {
-                                ix_end = i;
-                                break;
-                            }
+                            ix_end = i;
+                            break;
+                        }
+                        else if ((x1_diff >= step * -1 && x1_diff <= step) && y1_diff <= step && y1_diff >= step * -1)//x1_diff == 0
+                        {
+                            ix_end = i;
+                            break;
                         }
                     }
-                    catch (Exception exx)
-                    {
-                     //   Err_msg.Text = "Възникна грешка с крайната точка, моля опитайте отново";
-                    }
+                    //}
+                    //catch (Exception exx)
+                    //{
+                    // //   Err_msg.Text = "Възникна грешка с крайната точка, моля опитайте отново";
+                    //}
 
                     //get start point/room coords -> add it as 1st array item
 
@@ -431,7 +441,7 @@ namespace UNWE_Navigator_Services.Controllers
                     }
 
                     //remove repeated values
-                    
+
                     string[] refinedPath = new string[1];
                     refinedPath[0] = pathCoords[0];
 

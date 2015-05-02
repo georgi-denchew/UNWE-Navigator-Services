@@ -26,6 +26,12 @@ namespace UNWE_Navigator_Services.Models
         [DataMember(Name = "floorSectionID")]
         public string FloorSectionID { get; set; }
 
+        [DataMember(Name = "floorSection")]
+        public string FloorSection { get; set; }
+
+        [DataMember(Name = "floor")]
+        public int Floor { get; set; }
+
         [DataMember(Name = "roomFromID")]
         public int RoomFromID { get; set; }
 

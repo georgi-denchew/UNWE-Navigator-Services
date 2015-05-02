@@ -26,7 +26,7 @@ namespace UNWE_Navigator_Services.Controllers
             try
             {
                 resultA = LoadInfo(to, from);
-             //   return resultA;
+                //   return resultA;
             }
             catch (Exception e)
             {
@@ -40,7 +40,7 @@ namespace UNWE_Navigator_Services.Controllers
 
         private List<RouteModel> LoadInfo(string to, string from)
         {
-            
+
             this.result += " begin LoadInfo ";
             //log.Fatal("begin LoadInfo");
             List<RouteModel> result = new List<RouteModel>();
@@ -169,64 +169,64 @@ namespace UNWE_Navigator_Services.Controllers
 
 
 
-                    string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + r_to.Rows[0][0].ToString();//Request.QueryString["id"].ToString();
-                    DataTable dt = DB_Functions.GetData(sel);
-                    if (dt.Rows.Count > 0)
-                    {
-                        if (dt.Rows[0][2].ToString().Equals("1") || dt.Rows[0][2].ToString().Equals("2"))
-                        {
-                            picString = dt.Rows[0][0].ToString().Replace("/", "/r");
-                            //Session["pic"] = dt.Rows[0][0].ToString().Replace("/", "/r");
-                        }
-                        else
-                        {
-                            picString = dt.Rows[0][0].ToString();
-                            //Session["pic"] = dt.Rows[0][0].ToString();
-                        }
+                    //string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + r_to.Rows[0][0].ToString();//Request.QueryString["id"].ToString();
+                    //DataTable dt = DB_Functions.GetData(sel);
+                    //if (dt.Rows.Count > 0)
+                    //{
+                    //    if (dt.Rows[0][2].ToString().Equals("1") || dt.Rows[0][2].ToString().Equals("2"))
+                    //    {
+                    //        picString = dt.Rows[0][0].ToString().Replace("/", "/r");
+                    //        //Session["pic"] = dt.Rows[0][0].ToString().Replace("/", "/r");
+                    //    }
+                    //    else
+                    //    {
+                    //        picString = dt.Rows[0][0].ToString();
+                    //        //Session["pic"] = dt.Rows[0][0].ToString();
+                    //    }
 
-                        secpic = dt.Rows[0][1].ToString();
-                        rotation = dt.Rows[0][2].ToString();
-                        //Session["secpic"] = dt.Rows[0][1].ToString();
-                        //Session["rotation"] = dt.Rows[0][2].ToString();
+                    //    secpic = dt.Rows[0][1].ToString();
+                    //    rotation = dt.Rows[0][2].ToString();
+                    //    //Session["secpic"] = dt.Rows[0][1].ToString();
+                    //    //Session["rotation"] = dt.Rows[0][2].ToString();
 
-                        //get all floors arrow coordinates for big picture
-                        string fl_arrcoords = "";
-                        for (int i = 0; i < floors.GetLength(0); i++)
-                        {
-                            fl_arrcoords += "," + floors[i, 0];
+                    //    //get all floors arrow coordinates for big picture
+                    //    string fl_arrcoords = "";
+                    //    for (int i = 0; i < floors.GetLength(0); i++)
+                    //    {
+                    //        fl_arrcoords += "," + floors[i, 0];
 
-                        } fl_arrcoords = fl_arrcoords.Substring(1);
-                        //string sql = "Select MarkerPath from SecFlPics INNER JOIN TempPathData ON SecFlPics.IDSecFl = TempPathData.IDSecFl" +
-                        //    " where SecFlPics.IDSecFl in (" + fl_arrcoords + ") and searchID='" + Request.Cookies["SearchID"].Value.ToString() + "' ORDER BY TempPathData.OrderNum";
+                    //    } fl_arrcoords = fl_arrcoords.Substring(1);
+                    //    //string sql = "Select MarkerPath from SecFlPics INNER JOIN TempPathData ON SecFlPics.IDSecFl = TempPathData.IDSecFl" +
+                    //    //    " where SecFlPics.IDSecFl in (" + fl_arrcoords + ") and searchID='" + Request.Cookies["SearchID"].Value.ToString() + "' ORDER BY TempPathData.OrderNum";
 
-                        string sql = "Select MarkerPath from SecFlPics INNER JOIN TempPathData ON SecFlPics.IDSecFl = TempPathData.IDSecFl" +
-                            " where SecFlPics.IDSecFl in (" + fl_arrcoords + ") and searchID='" + searchID + "' ORDER BY TempPathData.OrderNum";
-
-
-                        DataTable arr_coords = DB_Functions.GetData(sql);
-                        for (int i = 0; i < arr_coords.Rows.Count; i++)
-                        {
-                            arrcoordsS += ">" + arr_coords.Rows[i][0].ToString();
-                            //Session["arrcoordsS"] += ">" + arr_coords.Rows[i][0].ToString();
-                        }
-                        arrcoordsS = arrcoordsS.Substring(1);
-
-                        //Session["arrcoordsS"] = Session["arrcoordsS"].ToString().Substring(1);
+                    //    string sql = "Select MarkerPath from SecFlPics INNER JOIN TempPathData ON SecFlPics.IDSecFl = TempPathData.IDSecFl" +
+                    //        " where SecFlPics.IDSecFl in (" + fl_arrcoords + ") and searchID='" + searchID + "' ORDER BY TempPathData.OrderNum";
 
 
-                        //Session["rooms"].ToString().Split('>');
-                        string links = LoadLinks(floorsString);
+                    //    DataTable arr_coords = DB_Functions.GetData(sql);
+                    //    for (int i = 0; i < arr_coords.Rows.Count; i++)
+                    //    {
+                    //        arrcoordsS += ">" + arr_coords.Rows[i][0].ToString();
+                    //        //Session["arrcoordsS"] += ">" + arr_coords.Rows[i][0].ToString();
+                    //    }
+                    //    arrcoordsS = arrcoordsS.Substring(1);
+
+                    //    //Session["arrcoordsS"] = Session["arrcoordsS"].ToString().Substring(1);
+
+
+                    //    //Session["rooms"].ToString().Split('>');
+                    //    List<string> links = LoadLinks(floorsString);
 
 
 
-                        //btn_ShowPath.Visible = true;
-                        // Err_msg.Text = "";
-                    }
-                    else
-                    {
-                        // Err_msg.Text = "Липсва изображение за етажа";
-                        // btn_ShowPath.Visible = false;
-                    }
+                    //    //btn_ShowPath.Visible = true;
+                    //    // Err_msg.Text = "";
+                    //}
+                    //else
+                    //{
+                    //    // Err_msg.Text = "Липсва изображение за етажа";
+                    //    // btn_ShowPath.Visible = false;
+                    //}
                 }
             }
             else
@@ -261,8 +261,19 @@ namespace UNWE_Navigator_Services.Controllers
 
             log.Debug("begin GetRoute");
 
-            string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + floor;
             RouteModel result = new RouteModel();
+
+            string getFloors = "Select SecAlph,Floor from SectionFloorNames where IDSecFl=" + floor;
+            DataTable dt1 = DB_Functions.GetData(getFloors);
+            
+            if (dt1.Rows.Count > 0)
+            {
+                result.FloorSection = dt1.Rows[0][0].ToString();
+                result.Floor = Convert.ToInt32(dt1.Rows[0][1]);
+            }
+
+
+            string sel = "Select Pic,SecPic,Rotation,MarkerPath from SecFlPics where IDSecFl=" + floor;
             result.FloorSectionID = floor;
             result.RoomFromID = int.Parse(fromRoom);
             result.RoomToID = int.Parse(toRoom);
@@ -520,63 +531,30 @@ namespace UNWE_Navigator_Services.Controllers
 
         }
 
-        private string LoadLinks(string floorsString)
+        private List<string> LoadLinks(string floorString)
         {
-            this.result += "begin LoadLinks ";
+            List<string> result = new List<string>();
+            //this.result += "begin LoadLinks ";
             log.Debug("begin LoadLinks");
 
-            string links = string.Empty;
+            string link = string.Empty;
 
-            if (floorsString != null)
+            if (floorString != null)
             {
-                //navlinks.Controls.Clear();
-                string[] floors = floorsString.Split('>');
-
-                //                string[] floors = Session["floors"].ToString().Split('>');
-                //LiteralControl lb1 = new LiteralControl("Маршрут: <br/> ");
-                //Panel2.Controls.Add(lb1);
-                for (int i = 0; i < floors.Length; i++)//each (string fl in floors)
+                string getFloors = "Select SecAlph,Floor from SectionFloorNames where IDSecFl=" + floorString;
+                DataTable dt = DB_Functions.GetData(getFloors);
+                if (dt.Rows.Count > 0)
                 {
-                    string getFloors = "Select SecAlph,Floor from SectionFloorNames where IDSecFl=" + floors[i];
-                    DataTable dt = DB_Functions.GetData(getFloors);
-                    if (dt.Rows.Count > 0)
-                    {
-                        if (i > 0)
-                        {
-                            //    LiteralControl lb2 = new LiteralControl(" >> ");
-                            //   navlinks.Controls.Add(lb2);
+                    link = "корпус " + dt.Rows[0][0] + " ет." + dt.Rows[0][1] + "; ";
+                    link = "корпус " + dt.Rows[0][0] + " ет." + dt.Rows[0][1] + "; ";
 
-                            if (i % 4 == 0)
-                            {
-                                //     LiteralControl lb3 = new LiteralControl("</br></br>");
-                                //     navlinks.Controls.Add(lb3);
-                            }
-                        }
-                        //     LinkButton lb = new LinkButton();
-                        //    lb.ID = "lb_" + floors[i];
-                        links += "корпус " + dt.Rows[0][0] + " ет." + dt.Rows[0][1] + "; ";
-                        //lb.Text = "корпус " + dt.Rows[0][0] + " ет." + dt.Rows[0][1];
-                        //lb.ForeColor = System.Drawing.Color.Maroon;
-                        //lb.BackColor = System.Drawing.Color.SandyBrown;
-                        //lb.PostBackUrl = "~/ShowPath.aspx?src=" + Request.QueryString["src"].ToString() + "&fix=" + -1 + "&id=" + floors[i];
-                        //     lb.Enabled = false;
-                        if (i < floors.Length - 1)
-                        {
-                            //          lb.CssClass = "links";
-                        }
-                        else
-                        {
-                            //          lb.CssClass = "sel_links";
-                        }
-                        //      navlinks.Controls.Add(lb);
-
-                    }
+                    result.Add(link);
                 }
             }
             this.result += "end LoadLinks ";
             log.Debug("end LoadLinks");
 
-            return links;
+            return result;
         }
 
 

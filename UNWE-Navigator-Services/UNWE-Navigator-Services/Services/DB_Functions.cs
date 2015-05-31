@@ -47,7 +47,7 @@ namespace UNWE_Navigator_Services.Services
             {
                 case 1: sqlCommandText = "Update AllPaths Set PathCoords='" + path + "' where IDSecFl=" + IDSecFl;
                     break;
-                case 2: sqlCommandText = "Update SecFlRooms SET RoomPath='" + path + "' where RoomNum='" + rpName + "' and IdSecFl=" + IDSecFl + "";
+                case 2: sqlCommandText = "Update SecFlRooms SET RoomPath='" + path + "' where RoomNum=N'" + rpName + "' and IdSecFl=" + IDSecFl + "";
                     break;
                 case 3: sqlCommandText = "Update EntryPoints SET PointPath='" + path + "' where IdSecFl=" + IDSecFl + " and PointName='" + rpName + "'";
                     break;

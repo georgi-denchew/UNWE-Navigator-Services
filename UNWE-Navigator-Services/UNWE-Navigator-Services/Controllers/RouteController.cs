@@ -85,11 +85,11 @@ namespace UNWE_Navigator_Services.Controllers
             {
 
                 //get Section floor id for the start room
-                string sql_sel = "Select IDSecFl, SecAlph,Floor,RoomID,IdSec from RoomsInSecFloors where RoomNum='" + room_fr + "'";
+                string sql_sel = "Select IDSecFl, SecAlph,Floor,RoomID,IdSec from RoomsInSecFloors where RoomNum=N'" + room_fr + "'";
                 DataTable r_from = DB_Functions.GetData(sql_sel);
 
                 //get section floor id for the final destination
-                string sql_sel2 = "Select IDSecFl, SecAlph,Floor,RoomID, IdSec from RoomsInSecFloors where RoomNum='" + room_to + "'";
+                string sql_sel2 = "Select IDSecFl, SecAlph,Floor,RoomID, IdSec from RoomsInSecFloors where RoomNum=N'" + room_to + "'";
                 DataTable r_to = DB_Functions.GetData(sql_sel2);
 
 

@@ -384,11 +384,20 @@ namespace UNWE_Navigator_Services.Controllers
                     string[] pathCoords = new string[0];
 
 
-                    //   try
-                    // {
+                    try
+                     {
                     //find closest path point for start
                     for (int i = 0; i < mainPath.Length; i++)
                     {
+                        string[] mainPathParts = mainPath[i].Split(new char[] { ';' });
+                        int mainPart0 = Convert.ToInt32(mainPathParts[0]);
+                        int mainPart1 = Convert.ToInt32(mainPathParts[1]);
+
+                        string[] test = fl_rooms[0, 1].Split('>');
+                        string[] flRoomsParts = test[0].Split(new char[] { ';' });
+                        int flRoomsPart0 = Convert.ToInt32(flRoomsParts[0]);
+                        int flRoomsPart1 = Convert.ToInt32(flRoomsParts[1]);
+
                         int x1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[0]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[0]);
                         int y1_diff = Convert.ToInt32(mainPath[i].Split(new char[] { ';' })[1]) - Convert.ToInt32(fl_rooms[0, 1].Split('>')[0].Split(new char[] { ';' })[1]);
                         if (x1_diff <= step && x1_diff >= step * -1 && (y1_diff >= (step * -1) && y1_diff <= step))//y1_diff == 0)
@@ -402,14 +411,14 @@ namespace UNWE_Navigator_Services.Controllers
                             break;
                         }
                     }
-                    //}
-                    //catch (Exception exx)
-                    //{
+                    }
+                    catch (Exception exx)
+                    {
                     //    //Err_msg.Text = "Възникна грешка с началната точка, моля опитайте отново";
-                    //}
+                    }
 
-                    //try
-                    //{
+                    try
+                    {
                     //find closest path point for start
                     for (int i = 0; i < mainPath.Length; i++)
                     {
@@ -426,11 +435,11 @@ namespace UNWE_Navigator_Services.Controllers
                             break;
                         }
                     }
-                    //}
-                    //catch (Exception exx)
-                    //{
+                    }
+                    catch (Exception exx)
+                    {
                     // //   Err_msg.Text = "Възникна грешка с крайната точка, моля опитайте отново";
-                    //}
+                    }
 
                     //get start point/room coords -> add it as 1st array item
 
@@ -480,7 +489,7 @@ namespace UNWE_Navigator_Services.Controllers
                     string[] refinedPath = new string[1];
                     refinedPath[0] = pathCoords[0];
 
-                    for (int i = 0; i < pathCoords.Length; i++)
+                    for (int i = 1; i < pathCoords.Length; i++)
                     {
                         int x1R = int.Parse(pathCoords[i].Substring(0, pathCoords[i].IndexOf(";")));
                         int y1R = int.Parse(pathCoords[i].Substring(pathCoords[i].IndexOf(";") + 1));
